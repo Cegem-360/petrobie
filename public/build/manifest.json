@@ -1,0 +1,15 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-zRipwsLt.css",
+    "src": "resources/js/app.js"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-DDAV60Ow.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "css": [
+      "assets/app-zRipwsLt.css"
+    ]
+  }
+}
