@@ -33,7 +33,9 @@ class FileProcessController extends Controller
             $prod->update(['price' => $product['price']]);
         }
         $csvContent = file_get_contents('https://xml.bikefun.hu/cikktorzs.csv');
-        dd($csvContent);
+        #load the csv file to csvObject
+        $csvObject = str_getcsv($csvContent, ";");
+        dd($csvObject);
         //$csvContent =
     }
 }
