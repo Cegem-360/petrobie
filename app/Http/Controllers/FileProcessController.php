@@ -30,7 +30,16 @@ class FileProcessController extends Controller
             $prod = Product::firstOrCreate([
                 'productid' => $product['productid'],
             ]);
-            $prod->update(['price' => $product['price']]);
+            $prod->update(
+                [
+                    'price' => $product['price'],
+                    'stock' => $product['stock'],
+                    'product_name' => $product['productname'],
+                    'urlpicture' => $product['urlpicture'],
+                    'barcode' => $product['barcode'],
+                    'description' => $product['desc'],
+                ]
+            );
         }
         // $csvContent = file_get_contents('https://xml.bikefun.hu/cikktorzs.csv');
         //$csvContent = str_getcsv($csvContent, ";");

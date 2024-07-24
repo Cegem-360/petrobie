@@ -17,7 +17,7 @@ class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
 
-    protected static ?string $navigationIcon = 'heroicon-m-shopping-cart';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $navigationGroup = 'Termékek';
 
@@ -25,13 +25,16 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('product_name')
-                    ->required(true)
-                    ->placeholder('Név'),
+                Forms\Components\TextInput::make('product_id')
+                    ->required(),
+                Forms\Components\TextInput::make('product_name'),
+                Forms\Components\TextInput::make('stock')
+                    ->numeric()
+                    ->default(0),
                 Forms\Components\TextInput::make('price')
                     ->numeric()
-                    ->required(true)
-                    ->placeholder('Ár')
+                    ->default(0)
+                    ->prefix('HUF'),
             ]);
     }
 
@@ -39,14 +42,30 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('product_name'),
-                Tables\Columns\TextColumn::make('price')
+                Tables\Columns\TextColumn::make('product_id')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('product_name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('stock')
                     ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('price')
+                    ->money()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make(),
+                //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -70,10 +89,10 @@ class ProductResource extends Resource
         return [
             'index' => Pages\ListProducts::route('/'),
             'create' => Pages\CreateProduct::route('/create'),
+            'view' => Pages\ViewProduct::route('/{record}'),
             'edit' => Pages\EditProduct::route('/{record}/edit'),
         ];
     }
-
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
