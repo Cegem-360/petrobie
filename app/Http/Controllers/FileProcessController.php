@@ -32,10 +32,22 @@ class FileProcessController extends Controller
             ]);
             $prod->update(['price' => $product['price']]);
         }
-        $csvContent = file_get_contents('https://xml.bikefun.hu/cikktorzs.csv');
-        $csvObject = str_getcsv($csvContent, ";", "\r\n");
+        // $csvContent = file_get_contents('https://xml.bikefun.hu/cikktorzs.csv');
+        //$csvContent = str_getcsv($csvContent, ";");
+        // $csvContent = array_chunk($csvContent, 62);
+        //array_shift($csvContent);
+
+
+
+        // $csvContent = str_getcsv($csvContent, ";", '"');
+        //$csvContent = file_get_contents('https://xml.bikefun.hu/cikktorzs.xml');
+        //$csvObject = str_getcsv($csvContent, ";", '"', "\r\n");
         //$csvObject = str_getcsv($csvContent);
-        dd($csvObject);
+        //dd($csvContent['Product'][0]);
+        //dd($csvContent['Product'][1]);
         //$csvContent =
+        //$htmlContent = file_get_contents('http://office.bikefun.hu:5555/getcsvstocks.html');
+        //$csv = array_map('str_getcsv', $csvContent);
+        //dd($csvContent);
     }
 }
