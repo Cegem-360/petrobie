@@ -77,6 +77,9 @@ final class ImportManagementPage extends Page
 
     protected function getViewData(): array
     {
+        if (!$this->products) {
+            $this->products = Product::all();
+        }
         /** @var Panel $panel */
         $panel = Product::all();
         return [
