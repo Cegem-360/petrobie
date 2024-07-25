@@ -9,3 +9,4 @@ Route::post('/upload', [FileProcessController::class, 'upload'])->name('upload')
 
 Route::redirect('/', '/admin');
 
+Route::get('/test', [FileProcessController::class,'upload'] );

@@ -22,8 +22,8 @@ class FileProcessController extends Controller
         //DB::table('products')->truncate();
 
         #make prevolus 2 file get the data and combine them with $path file content
-        $xmlContent = file_get_contents('https://biketrade97.hu/katalogus.xml');
-        $xmlObject = simplexml_load_string($xmlContent);
+        //$xmlContent = file_get_contents('https://biketrade97.hu/katalogus.xml');
+        //$xmlObject = simplexml_load_string($xmlContent);
 
         // $csvContent = file_get_contents('https://xml.bikefun.hu/cikktorzs.csv');
         //$csvContent = str_getcsv($csvContent, ";");
