@@ -80,11 +80,9 @@ final class ImportManagementPage extends Page
         if (!$this->products) {
             $this->products = Product::all();
         }
-        /** @var Panel $panel */
-        $panel = Product::all();
         return [
             'products' => $this->products,
-            'productsCount' => $panel->count(),
+            'productsCount' => $this->products->count(),
         ];
     }
 }
