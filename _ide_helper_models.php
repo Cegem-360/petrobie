@@ -16,22 +16,28 @@ namespace App\Models{
  * 
  *
  * @property int $id
- * @property string $product_id
+ * @property string|null $product_id
  * @property string|null $product_name
- * @property int|null $stock
+ * @property string|null $urlpicture
+ * @property string|null $barcode
+ * @property string|null $description
+ * @property string|null $stock
  * @property float|null $price
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereBarcode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereProductName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereStock($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereUrlpicture($value)
  */
 	class Product extends \Eloquent {}
 }

@@ -14,13 +14,12 @@ class ProductImporter extends Importer
     public static function getColumns(): array
     {
         return [
-            ImportColumn::make('product_id')
-                ->requiredMapping()
-                ->rules(['required']),
+            ImportColumn::make('product_id'),
             ImportColumn::make('product_name'),
-            ImportColumn::make('stock')
-                ->numeric()
-                ->rules(['integer']),
+            ImportColumn::make('urlpicture'),
+            ImportColumn::make('barcode'),
+            ImportColumn::make('description'),
+            ImportColumn::make('stock'),
             ImportColumn::make('price')
                 ->numeric()
                 ->rules(['integer']),
@@ -29,12 +28,10 @@ class ProductImporter extends Importer
 
     public function resolveRecord(): ?Product
     {
-        // return Product::firstOrNew([
-        //     // Update existing records, matching them by `$this->data['column_name']`
-        //     'email' => $this->data['email'],
-        // ]);
-
-        return new Product();
+        return Product::firstOrNew([
+            // Update existing records, matching them by `$this->data['column_name']`
+            'product_id' => $this->data['productid'],
+        ]);
     }
 
     public static function getCompletedNotificationBody(Import $import): string

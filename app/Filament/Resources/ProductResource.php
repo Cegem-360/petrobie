@@ -10,6 +10,7 @@ use App\Filament\Resources\ProductResource\Pages\EditProduct;
 use App\Filament\Resources\ProductResource\Pages\ListProducts;
 use App\Filament\Resources\ProductResource\Pages\ViewProduct;
 use App\Models\Product;
+use Faker\Provider\ar_EG\Text;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -35,18 +36,22 @@ final class ProductResource extends Resource
 
     public static function form(Form $form): Form
     {
+        $fillable = ['productid', 'price', 'stock', 'product_name', 'urlpicture', 'barcode', 'description'];
         return $form
             ->schema([
                 TextInput::make('product_id')
                     ->required(),
                 TextInput::make('product_name'),
                 TextInput::make('stock')
-                    ->numeric()
                     ->default(0),
                 TextInput::make('price')
                     ->numeric()
                     ->default(0)
                     ->prefix('HUF'),
+                TextInput::make('urlpicture')
+                    ->url(),
+                TextInput::make('barcode'),
+                TextInput::make('description'),
             ]);
     }
 
@@ -62,8 +67,18 @@ final class ProductResource extends Resource
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('price')
-                    ->money()
+                    ->money('Ft.')
                     ->sortable(),
+                TextColumn::make('urlpicture')
+                    ->url(null)
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('barcode')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('description')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -73,9 +88,7 @@ final class ProductResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-
-            ])
+            ->filters([])
             ->actions([
                 ViewAction::make(),
                 EditAction::make(),
@@ -89,15 +102,13 @@ final class ProductResource extends Resource
             ])->headerActions([
                 ImportAction::make()
                     ->importer(ProductImporter::class),
-            ]);
-        ;
+            ])->paginated([10, 25, 50, 100,200])
+            ;
     }
 
     public static function getRelations(): array
     {
-        return [
-
-        ];
+        return [];
     }
 
     public static function getPages(): array
