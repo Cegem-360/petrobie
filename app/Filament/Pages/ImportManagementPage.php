@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\Filament\Pages;
 
-use App\Jobs\DatabaseProductDownloadFromBiketadeJob;
-use App\Jobs\GenerateProductCsvJob;
 use App\Models\Product;
-use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use Illuminate\Database\Eloquent\Collection;
+use App\Jobs\GenerateProductCsvJob;
 use Illuminate\Support\Facades\Bus;
+use Filament\Notifications\Notification;
+use Illuminate\Database\Eloquent\Collection;
+use App\Jobs\DatabaseProductDownloadFromBikeFunJob;
+use App\Jobs\DatabaseProductDownloadFromBiketadeJob;
 
 final class ImportManagementPage extends Page
 {
@@ -35,6 +36,7 @@ final class ImportManagementPage extends Page
 
         Bus::batch([
             new DatabaseProductDownloadFromBiketadeJob(),
+            new DatabaseProductDownloadFromBikeFunJob()
         ])->then(function (): void {
             Notification::make()
                 ->title('Download finished')
@@ -56,7 +58,7 @@ final class ImportManagementPage extends Page
     public function startGeneration(): void
     {
         Bus::batch([
-            new GenerateProductCsvJob($this->products),
+            new GenerateProductCsvJob($this->products)
         ])->then(function (): void {
             Notification::make()
                 ->title('GenerateProductCsvJob finished')
