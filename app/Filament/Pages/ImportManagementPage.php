@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Pages;
 
+use App\Jobs\DatabaseProductDownloadFromBiketadeJob;
 use App\Jobs\GenerateProductCsvJob;
 use App\Models\Product;
 use Filament\Notifications\Notification;
@@ -29,9 +30,31 @@ final class ImportManagementPage extends Page
         $this->products = Product::all();
     }
 
-    public function startGeneration(): void
+    public function startDatabaseUpFill(): void
     {
 
+        Bus::batch([
+            new DatabaseProductDownloadFromBiketadeJob(),
+        ])->then(function (): void {
+            Notification::make()
+                ->title('Download finished')
+                ->success()
+                ->send();
+        })->catch(function (): void {
+            Notification::make()
+                ->title('Download failed')
+                ->danger()
+                ->send();
+        })
+            ->name('DownloadBikeTradeXml')
+            ->dispatch();
+
+        $this->dispatch('$refresh');
+
+    }
+
+    public function startGeneration(): void
+    {
         Bus::batch([
             new GenerateProductCsvJob($this->products),
         ])->then(function (): void {

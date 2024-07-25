@@ -28,27 +28,7 @@ class GenerateProductCsvJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $xmlContent = file_get_contents('https://biketrade97.hu/katalogus.xml');
-        $xmlObject = simplexml_load_string($xmlContent);
-        //$xmlObject = json_encode($xmlObject);
-       // $xmlObject = json_decode($xmlObject, true);
 
-        foreach ($xmlObject->product as $product) {
-            $prod = Product::firstOrCreate([
-                'product_id' => $product->productid,
-            ]);
-
-            $prod->update(
-                [
-                    'price' => $product->price,
-                    'stock' => $product->stock,
-                    'product_name' => $product->productname,
-                    'urlpicture' => $product->urlpicture,
-                    'barcode' =>    $product->barcode,
-                    'description' => $product->desc,
-                ]
-            );
-        }
         if(!$this->products) {
             return;
         }
