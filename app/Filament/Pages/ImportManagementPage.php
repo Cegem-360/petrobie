@@ -83,6 +83,7 @@ final class ImportManagementPage extends Page
         /** @var Panel $panel */
         $panel = Product::all();
         return [
+            'products' => $this->products,
             'productsCount' => $panel->count(),
         ];
     }
