@@ -72,7 +72,6 @@ final class ImportManagementPage extends Page
             ->dispatch();
 
         $this->dispatch('$refresh');
-
     }
 
     protected function getViewData(): array
