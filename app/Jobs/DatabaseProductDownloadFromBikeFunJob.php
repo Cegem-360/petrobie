@@ -10,7 +10,7 @@ use Illuminate\Queue\SerializesModels;
 
 class DatabaseProductDownloadFromBikeFunJob implements ShouldQueue
 {
-    use Queueable;
+    use Batchable, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
