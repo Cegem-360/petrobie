@@ -27,9 +27,10 @@ class DatabaseProductDownloadFromBikeFunJob implements ShouldQueue
     public function handle(): void
     {
         $csvContent = file_get_contents('https://xml.bikefun.hu/cikktorzs.xml');
+        $xmlObject = simplexml_load_string($csvContent);
         $csvObject = str_getcsv($csvContent, ";", '"', "\r\n");
         $csvObject = str_getcsv($csvContent);
-        dd($csvContent['Product'][0]);
-        dd($csvContent['Product'][1]);
+        dd($xmlObject);
+        //dd($csvContent['Product'][1]);
     }
 }
