@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Product;
+use Illuminate\Bus\Batchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Foundation\Queue\Queueable;
@@ -11,7 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class DatabaseProductDownloadFromBiketadeJob implements ShouldQueue
 {
-    use Queueable;
+    use Batchable, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
