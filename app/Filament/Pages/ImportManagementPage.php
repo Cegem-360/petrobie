@@ -82,12 +82,11 @@ final class ImportManagementPage extends Page
         $xmlObject = simplexml_load_string($csvContent);
         $csvObject = str_getcsv($csvContent, ";", '"', "\r\n");
         $csvObject = str_getcsv($csvContent);
-        //dd($xmlObject);
+        dd($xmlObject);
         if (!$this->products) {
             $this->products = Product::all();
         }
         return [
-            'dd_data'=>$xmlObject,
             'products' => $this->products,
             'productsCount' => $this->products->count(),
         ];
