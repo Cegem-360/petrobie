@@ -12,5 +12,9 @@
             <p class="text-red-500">Please create a products to generate</p>
             <x-filament::button wire:click="startDatabaseUpFill" class="">Start Flooding</x-filament::button>
         </div>
+        @if ($dd_data)
+            @dd($dd_data)
+        @endif
+
     </div>
 </x-filament-panels::page>
