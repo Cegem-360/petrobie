@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Product;
 use Illuminate\Bus\Batchable;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Foundation\Queue\Queueable;
@@ -125,20 +126,28 @@ class DatabaseProductDownloadFromBikeFunJob implements ShouldQueue
 
     foreach ($csvContent as $product) {
         dd($product);
-        $prod = Product::firstOrCreate([
-            'product_id' => $product[0],
-        ]);
+        try {
+            $prod = Product::firstOrCreate([
+                'product_id' => $product[0],
+            ]);
 
-        $prod->update(
-            [
-                'price' => floatval(str_replace(',', '.', $product[2])),
-                'stock' => $product[45],
-                'product_name' => $product[1],
-                'urlpicture' => $product[50],
-                'barcode' =>    $product[49],
-                'description' => $product[21],
-            ]
-        );
+            $prod->update(
+                [
+                    'price' => floatval(str_replace(',', '.', $product[2])),
+                    'stock' => $product[45],
+                    'product_name' => $product[1],
+                    'urlpicture' => $product[50],
+                    'barcode' => $product[49],
+                    'description' => $product[21],
+                ]
+            );
+        } catch (\Exception $e) {
+            // Handle the exception here
+            // You can log the error, send an email, or perform any other action
+            // For example, you can log the error message using Laravel's Log facade:
+            Log::error($e->getMessage());
+            dd($product);
+        }
     }
 
         //dd($csvContent);
