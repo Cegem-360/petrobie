@@ -140,7 +140,7 @@ class DatabaseProductDownloadFromBikeFunJob implements ShouldQueue
         );
     }
 
-    dd($csvContent);
+        //dd($csvContent);
         //dd($csvContent['Product'][1]);
     }
 }
