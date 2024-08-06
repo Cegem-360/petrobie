@@ -133,7 +133,7 @@ class DatabaseProductDownloadFromBikeFunJob implements ShouldQueue
             $prod = Product::firstOrCreate([
                 'product_id' => $product[0],
             ]);
-
+            //TODO: finish the remain fields
             $prod->update(
                 [
                     'price' => floatval(str_replace(',', '.', $product[2])),
