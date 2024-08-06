@@ -92,6 +92,31 @@ class DatabaseProductDownloadFromBikeFunJob implements ShouldQueue
     61 => "webcat"
     */
 
+    #curl https://xml.bikefun.hu/cikktorzs.csv > cikktorzs.csv
+    #q:make code for curl request
+    #q:make code for csv parsing
+    #q:make code for product creation
+    #q:make code for product update
+    $curl = curl_init();
+    curl_setopt_array($curl, [
+        CURLOPT_URL => 'https://xml.bikefun.hu/cikktorzs.csv',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HEADER => false,
+    ]);
+
+    $response = curl_exec($curl);
+    curl_close($curl);
+
+    if ($response === false) {
+        dd($response);
+    } else {
+        dd($response);
+    }
+
+
+
+
     $csvContent = file_get_contents('https://xml.bikefun.hu/cikktorzs.csv');
     $csvContent = str_getcsv($csvContent, ";");
     $csvContent = array_chunk($csvContent, 62);
