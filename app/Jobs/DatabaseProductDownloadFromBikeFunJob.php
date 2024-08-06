@@ -129,7 +129,7 @@ class DatabaseProductDownloadFromBikeFunJob implements ShouldQueue
 
         $prod->update(
             [
-                'price' => $product[2],
+                'price' => floatval(str_replace(',', '.', $product[2])),
                 'stock' => $product[45],
                 'product_name' => $product[1],
                 'urlpicture' => $product[50],
