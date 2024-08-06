@@ -96,7 +96,8 @@ class DatabaseProductDownloadFromBikeFunJob implements ShouldQueue
     #q:make code for curl request
     #q:make code for csv parsing
     #q:make code for product creation
-    #q:make code for product update
+    #q:make code for product updat
+    /*
     $curl = curl_init();
     curl_setopt_array($curl, [
         CURLOPT_URL => 'https://xml.bikefun.hu/cikktorzs.csv',
@@ -113,7 +114,7 @@ class DatabaseProductDownloadFromBikeFunJob implements ShouldQueue
     } else {
         dd($response);
     }
-
+*/
 
 
 
