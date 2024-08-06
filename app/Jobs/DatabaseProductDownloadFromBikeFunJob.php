@@ -124,6 +124,7 @@ class DatabaseProductDownloadFromBikeFunJob implements ShouldQueue
     array_shift($csvContent);
 
     foreach ($csvContent as $product) {
+        dd($product);
         $prod = Product::firstOrCreate([
             'product_id' => $product[0],
         ]);
