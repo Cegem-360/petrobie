@@ -37,7 +37,7 @@ final class ImportManagementPage extends Page
     {
 
         Bus::batch([
-            new DatabaseProductDownloadFromBiketadeJob(),
+            //new DatabaseProductDownloadFromBiketadeJob(),
             //new DatabaseProductDownloadFromBikeFunJob(),
             new DatabaseProductDownloadFromVelodreamJob(),
         ])->then(function (): void {
