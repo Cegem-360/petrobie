@@ -12,6 +12,7 @@ use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Collection;
 use App\Jobs\DatabaseProductDownloadFromBikeFunJob;
 use App\Jobs\DatabaseProductDownloadFromBiketadeJob;
+use Artisan;
 
 final class ImportManagementPage extends Page
 {
@@ -74,6 +75,23 @@ final class ImportManagementPage extends Page
             ->dispatch();
 
         $this->dispatch('$refresh');
+    }
+
+    public function downloadCsv(): void
+    {
+        $this->startGeneration();
+        $this->dispatchBrowser(
+            fn () => Notification::make()
+                ->title('Download started')
+                ->message('The download will start in a few seconds.')
+                ->success()
+                ->send()
+        );
+    }
+
+    public function resetDatabase()
+    {
+        Artisan::call('migrate:refresh', ['--seed' => true]);
     }
 
     protected function getViewData(): array

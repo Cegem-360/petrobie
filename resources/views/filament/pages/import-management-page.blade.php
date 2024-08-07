@@ -1,4 +1,18 @@
 <x-filament-panels::page>
+
+    <x-slot name="title">Import Management</x-slot>
+    <x-slot name="description">Import Management</x-slot>
+    <x-slot name="actions">
+        <x-filament::button wire:click="startGeneration" class="">Start Generation</x-filament::button>
+        <x-filament::button wire:click="startDatabaseUpFill" class="">Start Flooding</x-filament::button>
+
+        <x-filament::button wire:click="downloadCsv" class="">downloadCsv</x-filament::button>
+    </x-slot>
+    <div class="p-4">
+        <x-filament::button wire:click="resetDatabase" class="">Reset</x-filament::button>
+    </div>
+
+
     <div class="">
         @if ($productsCount > 0)
             <div class="p-4">
