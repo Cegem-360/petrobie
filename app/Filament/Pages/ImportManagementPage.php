@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Pages;
 
+use Artisan;
 use App\Models\Product;
 use Filament\Pages\Page;
 use App\Jobs\GenerateProductCsvJob;
@@ -12,7 +13,7 @@ use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Collection;
 use App\Jobs\DatabaseProductDownloadFromBikeFunJob;
 use App\Jobs\DatabaseProductDownloadFromBiketadeJob;
-use Artisan;
+use App\Jobs\DatabaseProductDownloadFromVelodreamJob;
 
 final class ImportManagementPage extends Page
 {
@@ -37,7 +38,8 @@ final class ImportManagementPage extends Page
 
         Bus::batch([
             new DatabaseProductDownloadFromBiketadeJob(),
-            new DatabaseProductDownloadFromBikeFunJob()
+            //new DatabaseProductDownloadFromBikeFunJob(),
+            new DatabaseProductDownloadFromVelodreamJob(),
         ])->then(function (): void {
             Notification::make()
                 ->title('Download finished')
