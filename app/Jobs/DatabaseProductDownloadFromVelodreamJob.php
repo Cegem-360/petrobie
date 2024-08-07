@@ -27,12 +27,12 @@ class DatabaseProductDownloadFromVelodreamJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $response = Http::withBasicAuth('bicaj1', 'bicaj1')->get('https://vd.dynalias.com:5001/stock_latest');
+        $response = Http::withBasicAuth('bicaj1', 'bicaj1')->post('https://vd.dynalias.com:5001/stock_latest');
 
         if ($response->failed()) {
             dd($response->status());
         }
-        dd($response());
+        dd($response);
 
 
 
