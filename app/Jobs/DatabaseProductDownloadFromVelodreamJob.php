@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use Illuminate\Bus\Batchable;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Foundation\Queue\Queueable;
@@ -26,7 +27,10 @@ class DatabaseProductDownloadFromVelodreamJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $xmlContent = file_get_contents('https://vd.dynalias.com:5001/stock_latest');
-        dd($xmlContent);
+        $response = Http::get('https://vd.dynalias.com:5001/stock_latest');
+        dd($response());
+
+
+
     }
 }
