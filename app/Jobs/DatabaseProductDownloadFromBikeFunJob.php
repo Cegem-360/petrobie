@@ -136,12 +136,18 @@ class DatabaseProductDownloadFromBikeFunJob implements ShouldQueue
             //TODO: finish the remain fields
             $prod->update(
                 [
-                    'price' => floatval(str_replace(',', '.', $product[2])),
+                    'price' => floatval(str_replace(',', '.', $product[45])),
                     'stock' => $product[45],
-                    'product_name' => $product[1],
+                    'product_name' => $product[20],
                     'urlpicture' => $product[50],
                     'barcode' => $product[49],
                     'description' => $product[21],
+                    'sku' => $product[9],
+                    'factory' => $product[24],
+                    'color' => $product[36],
+                    'size' => $product[55],
+                    'ability' => $product[30],
+                    'tag' => $product[24],
                 ]
             );
         } catch (\Exception $e) {

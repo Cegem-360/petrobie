@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $fillable = ['productid', 'price', 'stock', 'product_name', 'urlpicture', 'barcode', 'description'];
+        //$fillable = ['productid', 'price', 'stock', 'product_name', 'urlpicture', 'barcode', 'description'];
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('sku')->default('hiányzik')->nullable();
             $table->string('product_id')->default('hiányzik')->nullable();
             $table->string('product_name')->default('hiányzik')->nullable();
             $table->text('urlpicture')->default('hiányzik')->nullable();
@@ -21,6 +22,11 @@ return new class extends Migration
             $table->longText('description')->default('hiányzik')->nullable();
             $table->string('stock')->default('instock')->nullable();
             $table->double('price')->default(0)->nullable();
+            $table->string('factory')->default('hiányzik')->nullable();
+            $table->string('color')->default('hiányzik')->nullable();
+            $table->string('size')->default('hiányzik')->nullable();
+            $table->string('ability')->default('hiányzik')->nullable();
+            $table->string('tag')->default('hiányzik')->nullable();
             $table->timestamps();
         });
     }
