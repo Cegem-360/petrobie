@@ -36,7 +36,7 @@ final class ProductResource extends Resource
 
     public static function form(Form $form): Form
     {
-        $fillable = ['productid', 'price', 'stock', 'product_name', 'urlpicture', 'barcode', 'description'];
+        //$fillable = ['productid', 'price', 'stock', 'product_name', 'urlpicture', 'barcode', 'description'];
         return $form
             ->schema([
                 TextInput::make('product_id')
@@ -52,7 +52,15 @@ final class ProductResource extends Resource
                     ->url(),
                 TextInput::make('barcode'),
                 TextInput::make('description'),
+                TextInput::make('sku'),
+                TextInput::make('factory'),
+                TextInput::make('color'),
+                TextInput::make('size'),
+                TextInput::make('ability'),
+                TextInput::make('tag'),
+
             ]);
+
     }
 
     public static function table(Table $table): Table
@@ -69,6 +77,12 @@ final class ProductResource extends Resource
                 TextColumn::make('price')
                     ->money('Ft.')
                     ->sortable(),
+                TextColumn::make('sku'),
+                TextColumn::make('factory'),
+                TextColumn::make('color'),
+                TextColumn::make('size'),
+                TextColumn::make('ability'),
+                TextColumn::make('tag'),
                 TextColumn::make('urlpicture')
                     ->url(null)
                     ->sortable()
