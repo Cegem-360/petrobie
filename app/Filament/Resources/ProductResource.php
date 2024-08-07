@@ -78,11 +78,16 @@ final class ProductResource extends Resource
                     ->money('Ft.')
                     ->sortable(),
                 TextColumn::make('sku'),
-                TextColumn::make('factory'),
-                TextColumn::make('color'),
-                TextColumn::make('size'),
-                TextColumn::make('ability'),
-                TextColumn::make('tag'),
+                TextColumn::make('factory')->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('color')->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('size')->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('ability')->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('tag')->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('urlpicture')
                     ->url(null)
                     ->sortable()
