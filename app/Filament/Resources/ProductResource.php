@@ -59,6 +59,7 @@ final class ProductResource extends Resource
                 TextInput::make('ability'),
                 TextInput::make('tag'),
                 TextInput::make('source'),
+                TextInput::make('category'),
 
             ]);
 
@@ -80,6 +81,8 @@ final class ProductResource extends Resource
                     ->sortable(),
                 TextColumn::make('sku'),
                 TextColumn::make('source')->sortable(),
+                TextColumn::make('category')->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('factory')->sortable()
                 ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('color')->sortable()
