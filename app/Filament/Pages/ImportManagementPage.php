@@ -107,7 +107,7 @@ final class ImportManagementPage extends Page
             ->warning()
             ->send();
 
-        $this->dispatch('$refresh');
+       // $this->dispatch('$refresh');
 
         $this->velodream->storePubliclyAs(path: 'velodream', name: 'velodream.csv');
 
