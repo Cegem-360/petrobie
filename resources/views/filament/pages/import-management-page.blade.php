@@ -1,5 +1,20 @@
 <x-filament-panels::page>
 
+<x-filament::section>
+    <x-slot name="heading">
+        Import Management
+    </x-slot>
+
+    <form wire:submit="saveFile">
+        <input type="file" wire:model="velodream">
+
+        @error('velodream') <span class="error">{{ $message }}</span> @enderror
+
+        <button type="submit">upload</button>
+    </form>
+</x-filament::section>
+
+
     <x-slot name="title">Import Management</x-slot>
     <x-slot name="description">Import Management</x-slot>
     <x-slot name="actions">
