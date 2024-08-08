@@ -110,7 +110,7 @@ final class ImportManagementPage extends Page
             ->warning()
             ->send();
 
-        $this->velodream->storePubliclyAs(path: 'velodream', name: 'velodream.csv');
+        $this->velodream->storeAs(path: 'velodream', name: 'velodream.csv');
 
         Notification::make()
             ->title('Velodream Download finised')
