@@ -11,7 +11,8 @@
 
         @error('velodream') <span class="error">{{ $message }}</span> @enderror
 
-        <x-filament::button class="">upload</x-filament::button>
+        <button type="submit">upload</button>
+
     </form>
 </x-filament::section>
 
