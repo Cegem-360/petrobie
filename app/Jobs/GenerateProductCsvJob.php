@@ -34,7 +34,7 @@ class GenerateProductCsvJob implements ShouldQueue
         }
 
         $csv = fopen('products.csv', 'w');
-        $csvHeader = ['product_id', 'price', 'stock', 'product_name', 'urlpicture', 'barcode', 'description', 'sku','factory','color','size','ability','tag'];
+        $csvHeader = ['product_id', 'price', 'stock', 'product_name', 'urlpicture', 'barcode', 'description', 'sku','factory','color','size','ability','tag','source','category'];
         fputcsv($csv, $csvHeader);
         foreach ($this->products as $product) {
             fputcsv($csv, $product->toArray());
