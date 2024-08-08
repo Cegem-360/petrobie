@@ -5,7 +5,7 @@
         Import Management
     </x-slot>
 
-    <form wire:submit="saveFile">
+    <form wire:submit="saveFile" enctype="multipart/form-data">
         <input type="file" wire:model="velodream">
 
         @error('velodream') <span class="error">{{ $message }}</span> @enderror
