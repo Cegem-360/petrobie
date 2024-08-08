@@ -126,7 +126,7 @@ final class ImportManagementPage extends Page
         ->body('The downloads finished.')
         ->success()
         ->send();
-        //$this->dispatch('$refresh');
+        $this->dispatch('$refresh');
         //TODO: https://petrobike.hu/ import triger
         //Http::get('https://petrobike.hu/import');
     }
