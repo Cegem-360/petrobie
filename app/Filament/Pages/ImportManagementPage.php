@@ -97,9 +97,9 @@ final class ImportManagementPage extends Page
     public function resetDatabase(): void
     {
         //only refresh product table
-        Product::truncate();
+        //Product::truncate();
 
-        //Artisan::call('migrate:refresh', ['--seed' => true]);
+        Artisan::call('migrate:refresh', ['--seed' => true]);
     }
 
     public function saveFile(): void

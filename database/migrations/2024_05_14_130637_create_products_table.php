@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('ability')->default('hiányzik')->nullable();
             $table->string('tag')->default('hiányzik')->nullable();
             $table->string('source')->default('')->nullable();
+            $table->string('category')->default('')->nullable();
             $table->timestamps();
         });
     }
