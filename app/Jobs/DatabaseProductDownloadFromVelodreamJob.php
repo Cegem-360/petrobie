@@ -92,6 +92,7 @@ class DatabaseProductDownloadFromVelodreamJob implements ShouldQueue
                     'barcode' =>    $product[2],
                     'description' => $product[15],
                     'sku' => $product[1],
+                    'source' => 'velodream',
                 ]
             );
         }

@@ -148,6 +148,7 @@ class DatabaseProductDownloadFromBikeFunJob implements ShouldQueue
                     'size' => $product[55],
                     'ability' => $product[30],
                     'tag' => $product[24],
+                    'source' => 'bikefun',
                 ]
             );
         } catch (\Exception $e) {

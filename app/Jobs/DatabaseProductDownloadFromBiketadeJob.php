@@ -44,6 +44,7 @@ class DatabaseProductDownloadFromBiketadeJob implements ShouldQueue
                     'barcode' =>    $product->barcode,
                     'description' => $product->desc,
                     'sku' => $product->barcode,
+                    'source' => 'biketade',
                 ]
             );
         }
