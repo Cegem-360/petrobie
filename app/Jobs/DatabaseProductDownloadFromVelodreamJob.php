@@ -66,6 +66,7 @@ class DatabaseProductDownloadFromVelodreamJob implements ShouldQueue
 
             $prod->update(
                 [
+                    'product_id' => $product[1],
                     'price' => $product[8],
                     'stock' => $product[9],
                     'product_name' => $product[0],
