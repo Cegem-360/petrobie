@@ -112,8 +112,6 @@ final class ImportManagementPage extends Page
 
         $this->velodream->storePubliclyAs(path: 'velodream', name: 'velodream.csv');
 
-        $this->dispatch('$refresh');
-
         Notification::make()
             ->title('Velodream Download finised')
             ->body('The download finished.')
