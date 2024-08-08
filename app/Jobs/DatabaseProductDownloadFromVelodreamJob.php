@@ -72,7 +72,7 @@ class DatabaseProductDownloadFromVelodreamJob implements ShouldQueue
         $content = file_get_contents(storage_path('app/velodream/velodream.csv'));
         $csvContent = str_getcsv($content, ";");
         $csvContent = array_chunk($csvContent, 18);
-        dd($csvContent);
+        //dd($csvContent);
         array_shift($csvContent);
 
         foreach ($csvContent as $product) {
