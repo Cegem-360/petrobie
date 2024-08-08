@@ -38,7 +38,7 @@ class DatabaseProductDownloadFromBiketadeJob implements ShouldQueue
             $prod->update(
                 [
                     'price' => $product->price,
-                    'stock' => $product->stock,
+                    'stock' => $product->stock=="nincs raktáron" ? "0":"1",
                     'product_name' => $product->productname,
                     'urlpicture' => $product->urlpicture,
                     'barcode' =>    $product->barcode,

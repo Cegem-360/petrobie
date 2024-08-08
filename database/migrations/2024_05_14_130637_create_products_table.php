@@ -14,18 +14,18 @@ return new class extends Migration
         //$fillable = ['productid', 'price', 'stock', 'product_name', 'urlpicture', 'barcode', 'description'];
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('sku')->default('hiányzik')->nullable();
-            $table->string('product_id')->default('hiányzik')->nullable();
-            $table->string('product_name')->default('hiányzik')->nullable();
-            $table->text('urlpicture')->default('hiányzik')->nullable();
-            $table->string('barcode')->default('hiányzik')->nullable();
-            $table->longText('description')->default('hiányzik')->nullable();
+            $table->string('sku')->default('')->nullable();
+            $table->string('product_id')->default('')->nullable();
+            $table->string('product_name')->default('')->nullable();
+            $table->text('urlpicture')->default('')->nullable();
+            $table->string('barcode')->default('')->nullable();
+            $table->longText('description')->default('')->nullable();
             $table->string('stock')->default('instock')->nullable();
             $table->double('price')->default(0)->nullable();
-            $table->string('factory')->default('hiányzik')->nullable();
-            $table->string('color')->default('hiányzik')->nullable();
-            $table->string('size')->default('hiányzik')->nullable();
-            $table->string('ability')->default('hiányzik')->nullable();
+            $table->string('factory')->default('')->nullable();
+            $table->string('color')->default('')->nullable();
+            $table->string('size')->default('')->nullable();
+            $table->string('ability')->default('')->nullable();
             $table->string('tag')->default('hiányzik')->nullable();
             $table->string('source')->default('')->nullable();
             $table->string('category')->default('')->nullable();
