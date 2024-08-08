@@ -127,7 +127,7 @@ final class ImportManagementPage extends Page
         ->send();
         $this->dispatch('$refresh');
         //TODO: https://petrobike.hu/ import triger
-        Http::get('https://petrobike.hu/import');
+        //Http::get('https://petrobike.hu/import');
     }
 
     protected function getViewData(): array
