@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Filament\Pages;
 
+use App\Jobs\ExportBikefunProductsForNemetKerekpar;
+use Bus;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Support\Facades\Storage;
@@ -23,21 +25,15 @@ final class ExportBikeFunPage extends Page
     public function exportBikefun()
     {
         // Export logic here
-
-        $client = new \GuzzleHttp\Client();
-        $response = $client->get('https://xml.bikefun.hu/cikktorzs.csv');
-        $csvContent = $response->getBody()->getContents();
-
-        // return $csvContent as a download
-        Storage::putFile('cikktorzs.csv', $csvContent);
-
         $user = auth()->user;
-        Notification::make()->title('Sikeres exportálás!')
-            ->body(' sikerült exportálni a BikeFun-t.')
-            ->sendToDatabase($user);
-        ;
+
+        Bus::dispatch(new ExportBikefunProductsForNemetKerekpar())->then(function () use ($user): void {
+            Notification::make()
+                ->title('Can finished')
+                ->body(' sikerült exportálni a BikeFun-t.')
+                ->sendToDatabase($user);
+        });
+
         return Storage::download('cikktorzs.csv');
     }
-
-
 }
