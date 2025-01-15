@@ -25,7 +25,7 @@ final class ExportBikeFunPage extends Page
     public function exportBikefun()
     {
         // Export logic here
-        $user = auth()->user;
+        $user = auth()->user();
 
         Bus::dispatch(new ExportBikefunProductsForNemetKerekpar())->then(function () use ($user): void {
             Notification::make()
