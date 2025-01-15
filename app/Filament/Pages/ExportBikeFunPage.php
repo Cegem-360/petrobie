@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Filament\Pages;
 
 use App\Jobs\ExportBikefunProductsForNemetKerekpar;
-use Bus;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Storage;
 
 final class ExportBikeFunPage extends Page
