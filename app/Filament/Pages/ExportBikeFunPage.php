@@ -22,7 +22,7 @@ final class ExportBikeFunPage extends Page
 
     protected static ?int $navigationSort = 2;
 
-    public function exportBikefun()
+    public function exportBikefun(): void
     {
         // Export logic here
         $user = auth()->user();
@@ -34,6 +34,6 @@ final class ExportBikeFunPage extends Page
                 ->sendToDatabase($user);
         });
 
-        return Storage::download('cikktorzs.csv');
+        // return Storage::download('cikktorzs.csv');
     }
 }
