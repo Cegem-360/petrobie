@@ -24,7 +24,9 @@ final class ExportBikeFunPage extends Page
     {
         // Export logic here
 
-        $csvContent = file_get_contents('https://xml.bikefun.hu/cikktorzs.csv');
+        $client = new \GuzzleHttp\Client();
+        $response = $client->get('https://xml.bikefun.hu/cikktorzs.csv');
+        $csvContent = $response->getBody()->getContents();
 
         // return $csvContent as a download
         Storage::putFile('cikktorzs.csv', $csvContent);
