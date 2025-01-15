@@ -20,9 +20,7 @@ final class ExportBikeFunPage extends Page
 
     protected static ?int $navigationSort = 2;
 
-    public function mount(): void {}
-
-    public function exportBikefun(): void
+    public function exportBikefun()
     {
         // Export logic here
 
@@ -33,9 +31,10 @@ final class ExportBikeFunPage extends Page
 
         $user = auth()->user;
         Notification::make()->title('Sikeres exportálás!')
-            ->body(Storage::url('cikktorzs.csv') . ' sikerült exportálni a BikeFun-nak.')
+            ->body(' sikerült exportálni a BikeFun-t.')
             ->sendToDatabase($user);
         ;
+        return Storage::download('cikktorzs.csv');
     }
 
 
