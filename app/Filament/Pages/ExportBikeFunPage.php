@@ -27,12 +27,18 @@ final class ExportBikeFunPage extends Page
         // Export logic here
         $user = auth()->user();
 
-        Bus::dispatch(new ExportBikefunProductsForNemetKerekpar())->then(function () use ($user): void {
-            Notification::make()
-                ->title('Can finished')
-                ->body(' sikerült exportálni a BikeFun-t.')
-                ->sendToDatabase($user);
-        });
+        Bus::batch([
+            new ExportBikefunProductsForNemetKerekpar(),
+        ])
+            ->then(function (): void {
+                Notification::make()
+                    ->title('Can finished')
+                    ->body(' sikerült exportálni a BikeFun-t.')
+                    ->send();
+            })
+            ->name('DownloadCsvJob')
+            ->dispatch();
+
 
         // return Storage::download('cikktorzs.csv');
     }
