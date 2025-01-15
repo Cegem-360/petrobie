@@ -33,10 +33,6 @@ final class ExportBikefunProductsForNemetKerekpar implements ShouldQueue
         $client = new \GuzzleHttp\Client();
         $response = $client->get('https://xml.bikefun.hu/cikktorzs.csv');
         $csvContent = $response->getBody()->getContents();
-
-        // return $csvContent as a download
-        Storage::putFile('cikktorzs.csv', $csvContent);
-
-
+        Storage::put('cikktorzs.csv', $csvContent);
     }
 }
